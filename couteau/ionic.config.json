@@ -1,0 +1,7 @@
+{
+  "name": "couteau",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
