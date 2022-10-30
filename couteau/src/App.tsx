@@ -2,7 +2,13 @@ import { IonApp, IonRouterOutlet, IonSplitPane, setupIonicReact } from '@ionic/r
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 import Menu from './components/Menu';
-import Page from './pages/Page';
+import FrontPage from './pages/FrontPage';
+import Oraculo from './pages/Oraculo';
+import Predictor from './pages/Predictor';
+import Clima from './pages/Clima';
+import Universidades from './pages/Universidades';
+import AboutDeveloper from './pages/AboutDeveloper';
+
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -32,12 +38,18 @@ const App: React.FC = () => {
         <IonSplitPane contentId="main">
           <Menu />
           <IonRouterOutlet id="main">
+
             <Route path="/" exact={true}>
-              <Redirect to="/page/Inbox" />
+              <Redirect to="/page/Couteau" />
             </Route>
-            <Route path="/page/:name" exact={true}>
-              <Page />
-            </Route>
+
+             <Route path="/page/Couteau" exact={true} component={FrontPage}/>
+             <Route path="/page/Predictor" exact={true} component={Predictor}/>
+             <Route path="/page/Oraculo" exact={true} component={Oraculo}/>
+             <Route path="/page/Universidades" exact={true} component={Universidades}/>
+             <Route path="/page/Clima" exact={true} component={Clima}/>
+             <Route path="/page/Programador" exact={true} component={AboutDeveloper}/>
+
           </IonRouterOutlet>
         </IonSplitPane>
       </IonReactRouter>
