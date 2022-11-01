@@ -1,0 +1,13 @@
+.circle-result{
+    width: 90%;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.circle-result-bk-famele{
+    background-color: blue;
+}
+
+.circle-result-bk-male{
+    background-color: pink;
+}

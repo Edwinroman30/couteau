@@ -1,0 +1,11 @@
+.circle-result{
+    width: 90%;
+    height: 200px;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.circle-result-img{
+    width: 100%;
+    height: auto;
+}
