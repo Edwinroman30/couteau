@@ -26,7 +26,7 @@ const AboutDeveloper: React.FC = () => {
 
               <IonRow>
                  <IonCol size='12' className="ion-align-self-center">
-                    <IonImg src="./assets/img/edwinroman.png"/>
+                    <IonImg src="./assets/img/edwinroman.jpg"/>
                     <IonItem>
                       <IonLabel><a href='http://www.linkedin.com/in/edwinroman30'>Edwin Roman - Linkedin</a></IonLabel>
                       <small>edcode03@gmail.com</small>
