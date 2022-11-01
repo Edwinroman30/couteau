@@ -1,49 +1,102 @@
 import './Oraculo.css';
-import { IonContent, IonHeader, IonPage, IonToolbar, IonButtons, IonMenuButton, IonCardContent } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonToolbar, IonButtons, IonMenuButton, IonCardContent, IonInput, IonButton } from '@ionic/react';
 import {IonGrid, IonRow, IonCol, IonImg, IonItem, IonLabel} from '@ionic/react';
+import {useState} from 'react';
+import {CapacitorHttp, HttpResponse} from '@capacitor/core';
+
+/* 
+Vista que acepte el nombre de una persona y determine la edad de la misma (https://api.agify.io/?name=meelad) dependiendo la edad de la 
+persona debes mostrar un mensaje que diga si es joven, adulto o anciano. Muestra una imagen relativa a cada estado y su edad en numero.
+*/
 
 const Oraculo: React.FC = () => {
 
-  return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-            <IonButtons slot="start">
-              <IonMenuButton></IonMenuButton>
-            </IonButtons>
-        </IonToolbar>
-      </IonHeader>
+    const [name, setName] = useState<string>("");
+    const [age, setAge] = useState<number>(5);
+    const images = {
+      child : './assets/img/child.png',
+      adult : './assets/img/adult.png',
+      older : './assets/img/older.png'
+    }
 
-      <IonContent className='ion-padding'>
-            
-            <IonGrid fixed={true}>
+
+    function imageURLReturner(){
+        if(age < 18)
+          return images.child;
+        else if(age > 18 && age < 55)
+          return images.adult;
+        else 
+          return images.older;
+    }
+
+    async function determinateAgeAsync(pname : string = ""){
+        try {
+          
+          const options = {
+            url: 'https://api.agify.io/',
+            params: { name: pname }
+          };
+        
+          const response: HttpResponse = await CapacitorHttp.get(options);      
+          const {age} = response.data;
+          setAge(Number.parseInt(age));
+  
+        } catch (error) {
+          
+        }
+    }
+  
+    return (
+      <IonPage>
+        <IonHeader>
+          <IonToolbar>
+              <IonButtons slot="start">
+                <IonMenuButton></IonMenuButton>
+              </IonButtons>
+          </IonToolbar>
+        </IonHeader>
+  
+        <IonContent className='ion-padding'>
               
-              <IonRow >
-                 <IonCol size='12'>
-                      <h4>Hola ✌, soy Edwin</h4>
-                 </IonCol>
-              </IonRow>
-
-              <IonRow>
-                 <IonCol size='12' className="ion-align-self-center">
-                    <IonImg src="./assets/img/edwinroman.png"/>
-                    <IonItem>
-                      <IonLabel><a href='http://www.linkedin.com/in/edwinroman30'>Edwin Roman - Linkedin</a></IonLabel>
-                      <small>edcode03@gmail.com</small>
-                    </IonItem>
-                 </IonCol>
-              </IonRow>
-
-              <IonRow>
-                  <IonCardContent>A Software Engineer focus on the Backend field of information systems.</IonCardContent>
-                  <small>Mi nombre es Edwin Roman, soy un desarrollador de software que sueña y tiene como meta ayudar a millones de personas mediante la tecnología. 2020-10233</small>
-              </IonRow>
-
-            </IonGrid>
-
-      </IonContent>
-
-    </IonPage>
+              <IonGrid fixed={true}>
+                
+                <IonRow >
+                   <IonCol size='12'>
+                        <h4>Oraculo:</h4>
+                   </IonCol>
+                </IonRow>
+  
+                <IonRow>
+                   <IonCol size='12' className="ion-align-self-center">
+                      <IonItem>
+                        <IonInput placeholder="Introduzca su nombre:" onIonChange={e=> setName(String(e.detail.value))}></IonInput>
+                      </IonItem>
+                   </IonCol>
+                </IonRow>
+  
+                <IonRow>
+                  <IonCol>
+                    <IonButton onClick={()=> determinateAgeAsync(name)}>Determinar Edad</IonButton>
+                  </IonCol>
+                </IonRow>
+  
+              </IonGrid>
+  
+              <IonGrid>
+                <IonRow>
+                  <IonCol>
+                    <IonLabel className='text-center'>Edad: {age}</IonLabel>
+                    <hr/>
+                    <div className='circle-result'>
+                        <img className='circle-result-img' src={imageURLReturner()} />
+                    </div>
+                  </IonCol>
+                </IonRow>
+              </IonGrid>
+  
+        </IonContent>
+  
+      </IonPage>
   );
 };
 
