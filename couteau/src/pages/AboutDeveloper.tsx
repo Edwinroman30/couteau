@@ -29,7 +29,7 @@ const AboutDeveloper: React.FC = () => {
                     <IonImg src="./assets/img/edwinroman.jpg"/>
                     <IonItem>
                       <IonLabel><a href='http://www.linkedin.com/in/edwinroman30'>Edwin Roman - Linkedin</a></IonLabel>
-                      <small>edcode03@gmail.com</small>
+                      <small>202010233@gmail.com</small>
                     </IonItem>
                  </IonCol>
               </IonRow>
