@@ -70,7 +70,9 @@ const Predictor: React.FC = () => {
             <IonGrid>
               <IonRow>
                 <IonCol>
-                  <div className='circle-result' style={{background:('female' != gender)? 'blue' : 'pink' }}></div>
+                  <div className='circle-result' style={{background: (gender === "")? 
+                                                                      'white' : 
+                                                                      ('female' != gender)? 'blue': 'pink' }}></div>
                 </IonCol>
               </IonRow>
             </IonGrid>
