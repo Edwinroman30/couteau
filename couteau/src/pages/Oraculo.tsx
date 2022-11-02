@@ -12,7 +12,7 @@ persona debes mostrar un mensaje que diga si es joven, adulto o anciano. Muestra
 const Oraculo: React.FC = () => {
 
     const [name, setName] = useState<string>("");
-    const [age, setAge] = useState<number>(5);
+    const [age, setAge] = useState<number>(0);
     const images = {
       child : './assets/img/child.png',
       adult : './assets/img/adult.png',
@@ -87,9 +87,12 @@ const Oraculo: React.FC = () => {
                   <IonCol>
                     <IonLabel className='text-center'>Edad: {age}</IonLabel>
                     <hr/>
-                    <div className='circle-result'>
-                        <img className='circle-result-img' src={imageURLReturner()} />
-                    </div>
+                    {
+                      age != 0 && 
+                                  <div className='circle-result'>
+                                      <img className='circle-result-img' src={imageURLReturner()} />
+                                  </div>
+                    }
                   </IonCol>
                 </IonRow>
               </IonGrid>
